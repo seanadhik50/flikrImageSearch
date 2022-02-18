@@ -14,6 +14,13 @@
 		8941806927BF0BBF00BA0E2D /* FlikrImagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941806827BF0BBF00BA0E2D /* FlikrImagesTests.swift */; };
 		8941807327BF0BBF00BA0E2D /* FlikrImagesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941807227BF0BBF00BA0E2D /* FlikrImagesUITests.swift */; };
 		8941807527BF0BBF00BA0E2D /* FlikrImagesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941807427BF0BBF00BA0E2D /* FlikrImagesUITestsLaunchTests.swift */; };
+		8941808527BF110100BA0E2D /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941808427BF110100BA0E2D /* Image.swift */; };
+		8941808727BF120E00BA0E2D /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941808627BF120E00BA0E2D /* ImageViewModel.swift */; };
+		8941808927BF1B2800BA0E2D /* ImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941808827BF1B2800BA0E2D /* ImageWrapper.swift */; };
+		8941808B27BF1B4100BA0E2D /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941808A27BF1B4100BA0E2D /* Media.swift */; };
+		8941808E27BF1B9E00BA0E2D /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941808D27BF1B9E00BA0E2D /* WebService.swift */; };
+		8941809127BF1E3400BA0E2D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8941809027BF1E3400BA0E2D /* Kingfisher */; };
+		8941809327BF2F9000BA0E2D /* ImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8941809227BF2F9000BA0E2D /* ImageDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +51,12 @@
 		8941806E27BF0BBF00BA0E2D /* FlikrImagesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlikrImagesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8941807227BF0BBF00BA0E2D /* FlikrImagesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlikrImagesUITests.swift; sourceTree = "<group>"; };
 		8941807427BF0BBF00BA0E2D /* FlikrImagesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlikrImagesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8941808427BF110100BA0E2D /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		8941808627BF120E00BA0E2D /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
+		8941808827BF1B2800BA0E2D /* ImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWrapper.swift; sourceTree = "<group>"; };
+		8941808A27BF1B4100BA0E2D /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		8941808D27BF1B9E00BA0E2D /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		8941809227BF2F9000BA0E2D /* ImageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8941809127BF1E3400BA0E2D /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,8 +108,11 @@
 		8941805627BF0BBC00BA0E2D /* FlikrImages */ = {
 			isa = PBXGroup;
 			children = (
+				8941808C27BF1B8F00BA0E2D /* Api */,
+				8941808327BF10DB00BA0E2D /* ViewModel */,
+				8941808227BF10D400BA0E2D /* Model */,
+				8941808127BF10CB00BA0E2D /* View */,
 				8941805727BF0BBC00BA0E2D /* FlikrImagesApp.swift */,
-				8941805927BF0BBC00BA0E2D /* ContentView.swift */,
 				8941805B27BF0BBF00BA0E2D /* Assets.xcassets */,
 				8941805D27BF0BBF00BA0E2D /* Preview Content */,
 			);
@@ -127,6 +144,41 @@
 			path = FlikrImagesUITests;
 			sourceTree = "<group>";
 		};
+		8941808127BF10CB00BA0E2D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8941805927BF0BBC00BA0E2D /* ContentView.swift */,
+				8941809227BF2F9000BA0E2D /* ImageDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8941808227BF10D400BA0E2D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8941808427BF110100BA0E2D /* Image.swift */,
+				8941808827BF1B2800BA0E2D /* ImageWrapper.swift */,
+				8941808A27BF1B4100BA0E2D /* Media.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8941808327BF10DB00BA0E2D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8941808627BF120E00BA0E2D /* ImageViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8941808C27BF1B8F00BA0E2D /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				8941808D27BF1B9E00BA0E2D /* WebService.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +195,9 @@
 			dependencies = (
 			);
 			name = FlikrImages;
+			packageProductDependencies = (
+				8941809027BF1E3400BA0E2D /* Kingfisher */,
+			);
 			productName = FlikrImages;
 			productReference = 8941805427BF0BBC00BA0E2D /* FlikrImages.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +270,9 @@
 				Base,
 			);
 			mainGroup = 8941804B27BF0BBC00BA0E2D;
+			packageReferences = (
+				8941808F27BF1E3400BA0E2D /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 8941805527BF0BBC00BA0E2D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -258,6 +316,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8941805A27BF0BBC00BA0E2D /* ContentView.swift in Sources */,
+				8941809327BF2F9000BA0E2D /* ImageDetailView.swift in Sources */,
+				8941808927BF1B2800BA0E2D /* ImageWrapper.swift in Sources */,
+				8941808E27BF1B9E00BA0E2D /* WebService.swift in Sources */,
+				8941808B27BF1B4100BA0E2D /* Media.swift in Sources */,
+				8941808527BF110100BA0E2D /* Image.swift in Sources */,
+				8941808727BF120E00BA0E2D /* ImageViewModel.swift in Sources */,
 				8941805827BF0BBC00BA0E2D /* FlikrImagesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,6 +669,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8941808F27BF1E3400BA0E2D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8941809027BF1E3400BA0E2D /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8941808F27BF1E3400BA0E2D /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8941804C27BF0BBC00BA0E2D /* Project object */;
 }

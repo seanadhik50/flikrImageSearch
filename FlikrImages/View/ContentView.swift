@@ -6,65 +6,113 @@
 //
 
 import SwiftUI
-
-struct Item: Identifiable {
-    let id = UUID()
-    let title: String
-    let image: String
-    let imgColor: Color
-}
+import Kingfisher
 
 struct ContentView: View {
     
-    let items = [
-        Item(title: "Home", image: "home", imgColor: .orange),
-        Item(title: "Money", image: "money", imgColor: .orange),
-        Item(title: "Bank", image: "bank", imgColor: .orange),
-        Item(title: "Vacation", image: "vacation", imgColor: .orange),
-        Item(title: "User", image: "user", imgColor: .orange),
-        Item(title: "Charts", image: "chart", imgColor: .orange),
-        Item(title: "Support", image: "support", imgColor: .orange)
+    @ObservedObject var imageVM = ImageViewModel()
+    @State var searchText = ""
+    @State var isSearching = false
+    
+    let layout = [
+        GridItem(.adaptive(minimum: 80))
     ]
     
-    let spacing: CGFloat = 10
-    @State private var numberOfRows = 3
-    
     var body: some View {
-        
-        let columns = Array(
-            repeating: GridItem(.flexible(), spacing: spacing), count: numberOfRows)
-        
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: spacing) {
-                ForEach(items) { item in
-                    ItemView(item: item)
+        NavigationView {
+            ScrollView {
+                HStack {
+                    HStack {
+                        TextField("Search images", text: $searchText)
+                            .padding(.leading, 24)
+                            .submitLabel(.done)
+                            .onChange(of: searchText) { _ in
+                                imageVM.getImages(searchText)
+                            }
+                    }
+                    .padding()
+                    .background(Color(.systemGray5))
+                    .cornerRadius(6)
+                    .padding(.horizontal)
+                    .onTapGesture(perform: {
+                        isSearching = true
+                    })
+                    .overlay {
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                            Spacer()
+                            
+                            if isSearching {
+                                Button(action: { searchText = "" }, label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .padding(.vertical)
+                                })
+                            }
+                        }
+                        .padding(.horizontal, 32)
+                        .foregroundColor(.gray)
+                    }
+                    .transition(.move(edge: .trailing))
+                    .animation(.spring())
+                    
+                    if isSearching {
+                        Button(action: {
+                            isSearching = false
+                            searchText = ""
+                            
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        }) {
+                            Text("Cancel")
+                                .padding(.trailing)
+                                .padding(.leading, 0)
+                        }
+                        .transition(.move(edge: .trailing))
+                        .animation(.spring())
+                    }
                 }
-            }
-            .padding(.horizontal)
+                
+                LazyVGrid(columns: layout, spacing: 16, content: {
+                    ForEach(imageVM.images) { image in
+                        NavigationLink(destination: ImageDetailView(imageItem: image)) {
+                            ImageInfo(item: image)
+                                .frame(height: 150)
+                        }
+                    }
+                }).padding([.horizontal, .top], 12)
+            }.navigationTitle("Image Search")
         }
-        .background(Color.white)
-        
-        Text("Hello, world!")
-            .padding()
+        .onAppear {
+            imageVM.getImages()
+        }
     }
 }
 
-struct ItemView: View {
-    let item: Item
+struct ImageInfo: View {
+    
+    let item: ImageItem
     
     var body: some View {
-        GeometryReader { reader in
-            VStack(spacing: 5) {
-                Image(item.image)
-                    .foregroundColor(item.imgColor)
-                    .frame(width: 50)
-                Text(item.title)
-                Spacer()
-            } .background(item.imgColor)
+        VStack(alignment: .leading, spacing: 4) {
+            
+            KFImage(URL(string: item.media.m))
+                .resizable()
+                .frame(height: 100)
+                .scaledToFit()
+                .cornerRadius(10)
+            Text(item.title)
+                .font(.system(size: 10, weight: .semibold))
+                .padding(.top, 4)
+            Text(item.published)
+                .font(.system(size: 9, weight: .regular))
+            Text(item.author)
+                .font(.system(size: 9, weight: .regular))
+                .foregroundColor(.gray)
+            
+            Spacer()
         }
-        .frame(height: 100)
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
